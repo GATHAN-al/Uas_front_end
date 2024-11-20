@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ulasan</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" href="booking.css">
+  <link rel="stylesheet" href="review.css">
+</head>
+<body ng-app="reviewApp" ng-controller="reviewController">
+
+  <!-- Header Section -->
+  <div class="navbar">
+    <div class="left">
+      <a href="home.html">Bali Resort Hotel</a>
+      <a href="booking.html" id="link-availability">Availability</a>
+      <a href="review.html" id="link-about">About</a>
+      <a href="#" id="link-contact">Contact</a>
+      <a href="wishlist.html" id="link-policies">Policies</a>
+    </div>
+  </div>
+
+  <!-- Container -->
+  <div class="containerr">
+    <h1>Ulasan Anda</h1>
+
+    <!-- Filter and Sort -->
+    <div class="filters">
+      <input type="text" ng-model="searchQuery" placeholder="Cari ulasan..." />
+      <select ng-model="sortCriteria">
+        <option value="">Urutkan Berdasarkan</option>
+        <option value="text">Abjad</option>
+        <option value="date">Tanggal</option>
+      </select>
+      <button ng-click="reverseSort = !reverseSort">
+        {{ reverseSort ? 'Urutan Naik' : 'Urutan Turun' }}
+      </button>
+    </div>
+
+    <!-- Form Tambah Ulasan -->
+    <form ng-submit="addReview()">
+      <textarea ng-model="newReview.text" placeholder="Tulis ulasan..." required></textarea>
+      <button type="submit">Kirim Ulasan</button>
+    </form>
+
+    <!-- Daftar Ulasan -->
+    <h2>Daftar Ulasan</h2>
+    <ul>
+      <li ng-repeat="review in reviews | filter:searchQuery | orderBy:sortCriteria:reverseSort">
+        {{ review.text }} - {{ review.date }}
+        <button ng-click="deleteReview(review._id)">Hapus</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- AngularJS Script -->
+  <script>
+    const app = angular.module('reviewApp', []);
+
+    app.controller('reviewController', function ($scope, $http) {
+      $scope.reviews = [];
+      $scope.newReview = {};
+      $scope.reverseSort = false; // Default ascending sort
+
+      // Ambil semua ulasan
+      $scope.getReviews = function () {
+        $http.get("http://localhost:3000/api/reviews").then((response) => {
+          $scope.reviews = response.data;
+        });
+      };
+
+      // Tambah ulasan baru
+      $scope.addReview = function () {
+        $scope.newReview.date = new Date().toLocaleDateString(); // Tambahkan tanggal ulasan
+        $http.post("http://localhost:3000/api/reviews", $scope.newReview).then((response) => {
+          $scope.reviews.push(response.data);
+          $scope.newReview = {}; // Reset form
+        });
+      };
+
+      // Hapus ulasan
+      $scope.deleteReview = function (id) {
+        $http.delete(`http://localhost:3000/api/reviews/${id}`).then(() => {
+          $scope.reviews = $scope.reviews.filter((review) => review._id !== id);
+        });
+      };
+
+      // Load ulasan saat aplikasi dimulai
+      $scope.getReviews();
+    });
+  </script>
+</body>
+</html>

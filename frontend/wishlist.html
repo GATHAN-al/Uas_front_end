@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="wishlistApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" href="wishlist.css">
+  <link rel="stylesheet" href="booking.css">
+</head>
+<body ng-controller="wishlistController">
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="left">
+      <a href="home.html">Bali Resort Hotel</a>
+      <a href="booking.html" id="link-availability">Availability</a>
+      <a href="rewiew.html" id="link-about">Ulasan</a>
+      <a href="#" id="link-contact">Contact</a>
+      <a href="wishlist.html" id="link-policies">Wishlish</a>
+    </div>
+  </div>
+
+  <!-- Daftar Kamar -->
+  <div class="room-list-container">
+    <h1>Daftar Kamar</h1>
+    <ul class="room-list">
+      <li class="room-item" ng-repeat="room in rooms">
+        <div class="room-info">
+          <h3>{{ room.name }}</h3>
+          <p>Harga: Rp {{ room.price }}</p>
+        </div>
+        <button class="wishlist-btn" ng-click="addToWishlist(room)">Add to Wishlist</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Wishlist -->
+  <div class="wishlist-container">
+    <h1>Wishlist Anda</h1>
+    <ul class="wishlist-list">
+      <li class="wishlist-item" ng-repeat="room in wishlist">
+        <div class="wishlist-info">
+          <h3>{{ room.roomName }}</h3>
+          <p>Room ID: {{ room.roomId }}</p>
+        </div>
+        <button class="delete-btn" ng-click="removeFromWishlist(room._id)">Hapus</button>
+      </li>
+      <p class="wishlist-empty" ng-if="wishlist.length === 0">Tidak ada kamar di wishlist Anda.</p>
+    </ul>
+  </div>
+
+  <!-- AngularJS Script -->
+  <script src="wishlist.js"></script>
+</body>
+</html>

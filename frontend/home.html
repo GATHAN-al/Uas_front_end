@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bali Resort Hotel</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bali Resort Hotel</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="styles.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>Wavy Button</title>
+    <!--Google Fonts-->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* Smooth scrolling behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hero-content">
+          <div class="navbar">
+            <a href="home.html" class="logo">
+              <img src="logo.png" alt="Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a id="nav-accommodation" href="index.html">Akomodasi</a></li>
+                <li><a id="nav-amenities" href="booking.html">Amenities</a></li>
+                <li><a id="nav-dining" href="#dining">Dining</a></li>
+                <li><a id="nav-gallery" href="#gallery">Gallery</a></li>
+                <li><a id="nav-contact" href="#contact">Contact</a></li>
+                      <div class="language-switcher">
+                        <button class="language-button" id="en-button" onclick="changeLanguage('en')">EN</button>
+                        <button class="language-button" id="in-button" onclick="changeLanguage('id')">ID</button>
+                    </div>
+                  </ul>
+              </div>
+              <section id="rooms" class="section rooms">
+                <div class="hero-content">
+                  <div ng-controller="HomeController">
+                    <h2>Welcome to the Home Page</h2>
+                    <button ng-click="logout()">Logout</button>
+                </div>
+                
+                </div>
+            </div>  
+            <script>
+                let slide = document.querySelectorAll('.slide'); //menjadikan satu class di class slide(gambar)
+                var current = 0;//menampilkan slide pertama yang akan dimunculkan
+                var autoSlideInterval;//slide berjalan secara otomatis
+            
+                function cls() {
+                //menyembunyikan slide
+                for (let i = 0; i < slide.length; i++) {
+                  slide[i].style.display = 'none';
+                 } 
+               }
+            
+              function next() {
+              //menmpilkan slide berikutnya
+              cls();
+              if (current === slide.length - 1) current = -1;//mengembalikan ke awal slide
+              current++;//untuk ke slide selaanjutnya
+            
+              slide[current].style.display = 'block';
+            
+              }
+            
+              function prev() {
+               cls();
+               if (current === 0) current = slide.length;//jika saat ini di slide pertama, reset current ke slide terakhir.
+               current--;//untuk ke slide berikut
+            
+               slide[current].style.display = 'block';
+            
+              }
+            
+              function start() {
+                cls();
+                slide[current].style.display = 'block';
+              }
+            
+              //Fungsi untuk mengaktifkan auto-slide
+              function autoSlide() {
+               autoSlideInterval = setInterval(next, 3000); //Slide berubah setiap 3 detik
+             }
+            
+             // Fungsi untuk menghentikan auto-slide (jika diperlukan)
+              function stopAutoSlide() {
+               clearInterval(autoSlideInterval);
+             }
+            
+            // Memulai slide dan auto-slide ketika halaman dimuat
+              start();
+              autoSlide();
+             </script>
+                  <script src="language.js"></script>
+                  <script src="navbar.js"></script>
+              </header>
+            </head>
+            <body>
+      </header>
+      
+
+
+      <div class="container">
+        <div class="header">
+          <input type="date" id="checkin" name="checkin" required class="input-field">
+          <span>→</span>
+          <input type="date" id="checkout" name="checkout" required class="input-field">
+          <button onclick="redirectToBooking()">CHECK AVAILABILITY</button>
+        </div>
+      </div>
+      
+      <script>
+      function redirectToBooking() {
+        const checkin = document.getElementById('checkin').value;
+        const checkout = document.getElementById('checkout').value;
+        
+        if (checkin && checkout) {
+          // Redirect to booking.html with the checkin and checkout dates as query parameters
+          window.location.href = `booking.html?checkin=${checkin}&checkout=${checkout}`;
+        } else {
+          alert('Please select both check-in and check-out dates.');
+        }
+      }
+      
+      document.getElementById('checkin').addEventListener('change', validateDates);
+      document.getElementById('checkout').addEventListener('change', validateDates);
+      
+      function validateDates() {
+        const checkinInput = document.getElementById('checkin');
+        const checkoutInput = document.getElementById('checkout');
+      
+        const checkinDate = new Date(checkinInput.value);
+        const checkoutDate = new Date(checkoutInput.value);
+      
+        if (checkinDate && checkoutDate && checkoutDate <= checkinDate) {
+          checkoutInput.value = '';  // Clear invalid checkout date
+          alert('Checkout date must be after the check-in date.');
+        }
+      }
+      </script>
+        <div class="content">
+            <img alt="Aerial view of a luxurious beach resort surrounded by lush greenery and a beautiful coastline"
+            src="1.jpg"
+                 width="800" height="600"/>
+            <div class="text">
+                <h1 id="luxury-vacation-title">Liburan Mewah di Tepi Pantai</h1>
+                <p id="luxury-vacation-description">
+                    Nikmati kemewahan yang mewakili inspirasi Prancis di Sofitel Bali Nusa Dua Beach Resort, sebuah tempat
+                    perlindungan tepi pantai 5 bintang bergengsi dengan taman tropis yang indah dan arsitektur modern yang
+                    elegan. Sebagai bagian dari program MyResorts yang menawarkan pengalaman eksklusif bagi anggota ALL,
+                    resor megah ini menyediakan 413 kamar yang luar biasa, termasuk 39 suite dan vila, serta berbagai
+                    fasilitas resor.
+                </p>
+                <p id="luxury-vacation-description-2">
+                    Nikmati perjalanan kuliner di tiga restoran dan dua bar, pulihkan diri di Sofitel FITNESS dan Sofitel
+                    SPA, dan nikmati klub anak-anak indoor dan outdoor. Selain itu, resor ini memiliki 24 ruang fungsi,
+                    termasuk sebuah Balai Besar dan Balai Tepi Pantai. Temukan kehidupan seni yang paling utama di Club
+                    Millésime, di mana hidangan lezat, anggur yang luar biasa, dan pemandangan Nusa Dua yang menakjubkan
+                    menanti Anda.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <body>
+        <div class="header">
+            
+        </div>
+        
+        <div class="gambar">
+            <img src="3.jpg" alt="Gambar 1" />
+            <img src="3.jpg" alt="Gambar 2" />
+            <img src="1.jpg" alt="Gambar 3" />
+            <img src="1.jpg" alt="Gambar 4" />
+            <img src="1.jpg" alt="Gambar 5" />
+            <img src="1.jpg" alt="Gambar 6" />
+        </div>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1545100.7205666862!2d106.01694058262851!3d-6.302027112102189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f65c8572640d%3A0xc0a066d78372614e!2sUniversitas%20Tarumanagara!5e1!3m2!1sid!2sid!4v1727197709021!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"></iframe>" 
+               
+            </iframe>
+        </div>
+        
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col">
+                        <h4 id="footer-contact">Contact Us</h4>
+                        <ul>
+                            <li><a href="#" id="footer-address">Jalan Raya Ubud No.88, Ubud, Gianyar, Bali 80571, Indonesia</a></li>
+                            <li><a href="#" id="footer-phone">Telp: +62 (899) 8954 3222</a></li>
+                            <li><a href="#" id="footer-whatsapp">WA: +62 811 738 8921</a></li>
+                            <li><a href="#" id="footer-fax">Fax: +62 (899) 8954 3111</a></li>
+                            <li><a href="#" id="footer-email">Email: acv1622@sofitel.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 id="footer-explore">Explore</h4>
+                        <ul>
+                            <li><a href="#" id="footer-accommodations">Accommodations</a></li>
+                            <li><a href="#" id="footer-promotion">Promotion</a></li>
+                            <li><a href="#" id="footer-fb">F&B</a></li>
+                            <li><a href="#" id="footer-wedding">Wedding</a></li>
+                            <li><a href="#" id="footer-birthday">Birthday</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 id="footer-help">Get Help</h4>
+                        <ul>
+                            <li><a href="#" id="footer-faq">FAQ</a></li>
+                            <li><a href="#" id="footer-returns">Returns</a></li>
+                            <li><a href="#" id="footer-booking-status">Booking Status</a></li>
+                            <li><a href="#" id="footer-payment-options">Payment Options</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 id="footer-follow-us">Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </footer>
+    
+    </body>
+    </html>

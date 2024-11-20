@@ -1,0 +1,105 @@
+/* Style untuk Body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Agar form dan daftar ulasan lebih terpusat ke atas */
+    height: 100vh;
+    padding-top: 30px;
+  }
+  
+  /* Container utama untuk Ulasan */
+  .containerr {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    max-width: 800px; /* Membatasi lebar maksimum */
+  }
+  
+  /* Heading utama (Ulasan Pengguna) */
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Form untuk menambah ulasan */
+  form {
+    margin-bottom: 30px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: 120px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Daftar ulasan */
+  h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  button {
+    background-color: blue;
+    color: white;
+    font-size: 0.9em;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+  }
+  
+  button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Styling untuk link yang ada di form (seperti "Hapus") */
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

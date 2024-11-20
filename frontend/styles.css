@@ -1,0 +1,604 @@
+/* Global Reset and Fonts */
+* {
+  margin: 0; /* Menghapus margin default dari semua elemen */
+  padding: 0; /* Menghapus padding default dari semua elemen */
+  box-sizing: border-box; /* Mengatur box-sizing agar padding dan border tidak menambah ukuran elemen */
+  font-family: Arial, sans-serif;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: #f8f5f2;
+  overflow-x: hidden;
+
+}
+
+/* Container Layout */
+.container {
+  max-width: 350px;
+  width: 100%;
+  padding: 30px 10px;
+  border-radius: 15px;
+  flex-direction: column;
+  margin: 0 auto;
+   
+}
+
+.container nav {
+
+  position: relative;
+  height: 50px;
+  width: 100%; /* Make the nav take full width */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers the nav content horizontally */
+}
+
+.container nav::after {
+  content: "";
+  background: silver;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 47px;
+  filter: blur(0.5px);
+}
+
+.container nav label {
+  position: relative;
+  display: block;
+  height: 100%;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-right: 20px;
+}
+
+/* When the radio input is checked, change the label color */
+input[type="radio"]:checked + nav label {
+  color: #1e1f1f;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+/* Creating the sliding indicator for the navigation */
+.container nav::before {
+  content: "";
+  position: absolute;
+  height: 4.5px;
+  background-color: #1e1f1f;
+  border-radius: 20px;
+  width: 20%; /* Adjust this to fit your label */
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  transition: all 0.3s ease;
+  filter: blur(0.4px);
+}
+
+/* Add different styles to move the slider based on which radio input is checked */
+input#Akomodasi1:checked ~ nav::before {
+  left: 19%;
+}
+input#Akomodasi2:checked ~ nav::before {
+  left: 40%;
+}
+input#Akomodasi3:checked ~ nav::before {
+  left: 57%;
+}
+
+
+
+
+
+
+
+.kamar {
+  width: 100%; /* Lebar container penuh */
+  display: flex; /* Flexbox digunakan untuk tata letak */
+  justify-content: space-between; /* Item di dalam container tersebar merata */
+  flex-wrap: wrap; /* Mengizinkan item untuk membungkus ke baris baru jika diperlukan */
+ 
+}
+
+/* Left and Right Columns */
+.left-column, .right-column {
+  display: flex; /* Flexbox untuk tata letak kolom */
+  flex-direction: column; /* Elemen dalam kolom disusun secara vertikal */
+  width: 48%; /* Lebar setiap kolom adalah 48% */
+}
+
+/* Card Styles */
+.card {
+  position: relative; /* Posisi relatif untuk mengatur posisi elemen lain di dalamnya */
+  width: 100%; /* Lebar kartu penuh */
+  height: 300px; /* Tinggi kartu 300px */
+  padding: 15px; /* Padding di dalam kartu */
+  background-color: rgba(255, 255, 255, 0); /* Latar belakang kartu transparan */
+  margin-bottom: 15px; /* Jarak bawah antar kartu */
+  border-radius: 20px; /* Sudut kartu melengkung */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Efek bayangan lembut di sekitar kartu */
+  overflow: hidden; /* Sembunyikan konten yang keluar dari batas kartu */
+  transition: 0.3s ease; /* Transisi lembut saat hover */
+}
+
+/* Card Titles */
+.card h2 {
+  z-index: 99; /* Membawa elemen ke depan */
+  position: absolute; /* Posisi absolut untuk mengatur posisi manual */
+  bottom: 25px; /* Jarak dari bawah 25px */
+  left: 20px; /* Jarak dari kiri 20px */
+  font-size: 28px; /* Ukuran font judul */
+  font-weight: 700; /* Ketebalan font judul */
+  color: #020826; 
+  transition: 0.2s ease; /* Transisi lembut pada perubahan posisi atau warna */
+}
+
+/* Card Descriptions */
+.card p {
+  z-index: 99; /* Elemen berada di atas elemen lain */
+  position: absolute; /* Posisi absolut untuk penempatan manual */
+  bottom: 10px; /* Jarak dari bawah 10px */
+  left: 20px; /* Jarak dari kiri 20px */
+  width: 150px; /* Lebar teks deskripsi */
+  color: #020826; 
+  opacity: 0; /* Deskripsi tersembunyi (akan muncul saat hover) */
+  font-size: 14px; /* Ukuran font deskripsi */
+  text-align: left; /* Teks rata kiri */
+  letter-spacing: 1px; /* Jarak antar huruf */
+  transition: 0.2s ease; /* Transisi lembut saat hover */
+}
+
+/* Card Image */
+.card .pic {
+  z-index: 100; /* Membawa elemen gambar ke depan */
+  width: 100%; /* Lebar gambar penuh */
+  height: 180px; /* Tinggi gambar 180px */
+  background-size: cover; /* Menutup penuh elemen dengan gambar */
+  background-position: center; /* Gambar diposisikan di tengah */
+  border-radius: 12px; /* Sudut gambar melengkung */
+  transition: 0.3s ease; /* Transisi lembut pada perubahan filter */
+}
+
+.card:hover .pic {
+  filter: grayscale(0); /* Hilangkan grayscale saat hover */
+}
+
+/* Specific Background for Each Card */
+.card:nth-child(1) .pic {
+  background-image: url('2.jpg'); /* Gambar untuk kartu pertama */
+}
+
+.card:nth-child(2) .pic {
+  background-image: url('1.jpg'); /* Gambar untuk kartu kedua */
+}
+
+.right-column .card:nth-child(1) .pic {
+  background-image: url('3.jpg'); /* Gambar untuk kartu pertama di kolom kanan */
+}
+
+.right-column .card:nth-child(2) .pic {
+  background-image: url('3.jpg'); /* Gambar untuk kartu kedua di kolom kanan */
+}
+
+/* Card Button */
+.card button {
+  position: absolute; /* Posisi absolut di dalam kartu */
+  right: 30px; /* Jarak dari kanan 30px */
+  bottom: 40px; /* Jarak dari bawah 40px */
+  width: 30px; /* Lebar tombol 30px */
+  height: 30px; /* Tinggi tombol 30px */
+  background-color: #772a9b; /* Warna tombol ungu */
+  border: none; /* Tidak ada border */
+  border-radius: 50%; /* Tombol bulat */
+  cursor: pointer; /* Ubah kursor menjadi pointer saat hover */
+  transition: 0.3s ease; /* Transisi lembut saat hover */
+}
+
+.card:hover button {
+  transform: scale(16.5); /* Perbesar tombol saat hover */
+  opacity: 0.5; /* Ubah transparansi tombol */
+}
+
+/* Card Hover Effects */
+.card:hover h2 {
+  bottom: 80px; /* Geser judul ke atas saat hover */
+  left: 20px; /* Tetap di posisi kiri 20px */
+}
+
+.card:hover p {
+  opacity: 1; /* Tampilkan deskripsi saat hover */
+  left: 20px; /* Tetap di posisi kiri 20px */
+}
+
+/* Special Styling for Second Card */
+.card2 .pic {
+  background-image: url('1.jpg'); /* Gambar khusus untuk card2 */
+}
+
+.card2 button {
+  background-color: #26c3a1; /* Warna tombol khusus untuk card2 */
+}
+
+
+
+
+
+.navbar .logo {
+  font-size: 24px; /* Ukuran font logo */
+  font-weight: bold; /* Tebal font logo */
+}
+
+.navbar .nav-links {
+  list-style-type: none; /* Menghilangkan bullet pada list item */
+}
+
+.navbar .nav-links li {
+  display: inline; /* Menampilkan item list secara horizontal */
+  margin: 0 15px; /* Jarak antar item list */
+}
+
+.navbar .nav-links li a {
+  text-decoration: none; /* Menghilangkan garis bawah pada link */
+  color: #020826; /* Warna teks link */
+  font-weight: bold; /* Tebal font pada link */
+}
+.logo {
+  width: 30px; 
+  height: auto; /* Maintain aspect ratio */
+  margin: 0.5em; /* Adjust margin as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.language-switcher {
+  position: absolute;
+  top: center;
+  right: 10px;
+  display: flex;
+}
+
+.language-button {
+  background-color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.language-button:hover {
+  background-color: #f0f0f0;
+}
+
+#en-button {
+  border-radius: 5px 0 0 5px;
+}
+
+#in-button {
+  border-radius: 0 5px 5px 0;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh; /* Hero section mengambil tinggi penuh layar */
+  display: flex; /* Flexbox untuk tata letak hero */
+  flex-direction: column; /* Elemen di dalam hero disusun secara vertikal */
+  justify-content: center; /* Elemen di dalam hero diatur di tengah secara vertikal */
+  align-items: center; /* Elemen di dalam hero diatur di tengah secara horizontal */
+  color: white; /* Warna teks putih */
+  text-align: center; /* Teks diatur di tengah */
+}
+
+.hero-content h1 {
+  font-size: 48px; /* Ukuran font besar untuk judul hero */
+  margin-bottom: 20px; /* Jarak bawah judul */
+}
+
+.hero-content p {
+  font-size: 20px; /* Ukuran font deskripsi hero */
+  margin-bottom: 40px; /* Jarak bawah deskripsi */
+}
+.slide-1 {
+  background: url('1.jpg');
+}
+.slide-2 {
+  background: url('14.jpg');
+}
+.slide-3 {
+  background: url('11.jpg');
+}
+
+.slide {
+  width: 100vw;
+  height: 100vh; /* Hero section mengambil tinggi penuh layar */
+  display: flex; /* Flexbox untuk tata letak hero */
+  flex-direction: column; /* Elemen di dalam hero disusun secara vertikal */
+  justify-content: center; /* Elemen di dalam hero diatur di tengah secara vertikal */
+  align-items: center; /* Elemen di dalam hero diatur di tengah secara horizontal */
+  background-position: center;
+  position: relative;
+}
+.caption {
+  width: 100%;
+  position: absolute;
+  top: 40%;
+}
+.caption h3 {
+  color: white;
+  text-align: center;
+  font-size: 70px;
+}
+.caption p {
+  max-width: 600px;
+  margin:auto;
+  color: #ffffff;
+  text-align: center;
+  font-size:35px;
+  line-height: 1.5em;
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  z-index: 100;
+  background: rgba(0, 0, 0, .1);
+  border-radius: 50%;
+}
+.arrow img {
+  width: 50px;
+}
+.arrow:hover {
+  background: rgba(0, 0, 0, .4);
+}
+.l {
+  left: 0;
+}
+.r {
+  right: 0;
+}
+
+.cta-button {
+  background-color: #1e1f1f; /* Warna latar tombol Call to Action */
+  color: white; /* Warna teks tombol */
+  padding: 10px 20px; /* Padding di dalam tombol */
+  text-decoration: none; /* Menghilangkan garis bawah pada link */
+  font-size: 18px; /* Ukuran font tombol */
+  border-radius: 5px; /* Sudut tombol melengkung */
+}
+
+/* Section Padding */
+.section {
+  padding: 60px 20px; /* Padding untuk section */
+  text-align: center; /* Teks diatur di tengah */
+}
+
+/* Room Grid Layout */
+.room-grid {
+  display: flex; /* Flexbox untuk tata letak grid */
+  justify-content: space-around; /* Item di dalam grid tersebar merata */
+  margin-top: 30px; /* Jarak dari atas 30px */
+}
+
+.room-card {
+  background-color: white; /* Warna latar belakang kartu kamar */
+  border-radius: 8px; /* Sudut kartu melengkung */
+  padding: 20px; /* Padding di dalam kartu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan ringan */
+  width: 30%; /* Lebar kartu 30% */
+  text-align: center; /* Teks di dalam kartu diatur di tengah */
+}
+
+.room-card img {
+  width: 100%; /* Gambar mengambil lebar penuh kartu */
+  border-radius: 8px 8px 0 0; /* Sudut gambar melengkung di bagian atas */
+}
+
+/* Amenities List */
+.amenities-list {
+  display: flex; /* Flexbox untuk tata letak list fasilitas */
+  justify-content: space-around; /* Item dalam list tersebar merata */
+  margin-top: 30px; /* Jarak dari atas 30px */
+}
+
+.amenity {
+  background-color: #078080; /* Warna latar belakang untuk setiap fasilitas */
+  color: white; /* Warna teks fasilitas */
+  padding: 15px; /* Padding di dalam fasilitas */
+  border-radius: 5px; /* Sudut fasilitas melengkung */
+  font-weight: bold; /* Teks fasilitas dibuat tebal */
+  width: 20%; /* Lebar setiap fasilitas 20% */
+}
+
+.slider-wrapper {
+  overflow: visible;
+  margin: 10px;
+  width: 1100px;
+  margin-bottom: 40px;
+}
+
+.card-list .card-item {
+  color: white;
+  width: 10px;
+  user-select: none;
+  padding: 70px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10px;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 55px;
+  background: rgb(52, 47, 47);
+}
+
+.card-list .card-item .user-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 70%;
+  border: 5px solid white;
+  padding: 3px;
+  margin-bottom: 32px;
+}
+
+.card-list .card-item .user-name {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.card-list .card-item .review-text {
+  font-size: 18px;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+  margin: 18px 0;
+}
+
+.card-list .card-item .review-rating span {
+  color: #ffd700;
+  cursor: pointer;
+}
+
+.slider-wrapper .swiper-pagination-bullet {
+  background: blue;
+  width: 15px;
+  height: 15px;
+}
+
+.slider-wrapper .swiper-slider-button {
+  color: #fff;
+  margin-top: -50px;
+  transition: 0.3s ease;
+}
+
+.slider-wrapper .swiper-slider-button:hover {
+  color: #ffd700;
+}
+
+@media screen and (max-width: 768px) {
+  .slider-wrapper {
+    margin: 0 10px 40px;
+  }
+
+  .slider-wrapper .swiper-slider-button {
+    display: none;
+  }
+}
+
+/* Footer Styling */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"); /* Import font dengan berbagai weight */
+body {
+  line-height: 1.5; /* Mengatur jarak vertikal antar baris teks */
+  font-family: "Poppins", sans-serif; /* Mengatur font utama = "Poppins" & font cadangan = sans-serif */
+}
+* {
+  margin: 0; /* Jarak antar elemen */
+  padding: 0; /* Jarak antar isi elemen */
+  box-sizing: border-box;
+}
+.container {
+  max-width: 1170px; /* Lebar max */
+  margin: auto; /* Mengatur margin otomatis untuk memusatkan elemen secara horizontal */
+}
+.row {
+  display: flex; /* Mengatur elemen untuk menggunakan model layout fleksibel (flexbox) */
+  flex-wrap: wrap; /*Fleksibel dlm hal membungkus ke baris berikutnya jika tidak muat di satu baris */
+}
+ul {
+  list-style: none; /* Menghilangkan bullet atau nomor dari elemen list */
+}
+.footer {
+  background-color: #24262b;
+  padding: 70px 0; /* Mengatur padding vertikal = 70px, tanpa padding horizontal */
+  margin-top: auto;
+}
+.footer-col {
+  width: 25%;
+  padding: 0 15px;
+}
+.footer-col h4 {
+  font-size: 18px;
+  color: #ffffff;
+  text-transform: capitalize; /* Huruf pertama dari setiap kata jadi huruf kapital */
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative; /* Mengatur posisi elemen relatif terhadap posisi normalnya */
+}
+.footer-col h4::before {
+  content: ""; /* Mendefinisikan konten kosong untuk elemen pseudo, memungkinkan penggunaan gaya seperti background atau border */
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  background-color: #078080;
+  height: 2px;
+  box-sizing: border-box;
+  width: 50px;
+}
+.footer-col ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
+.footer-col ul li a {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  color: #bbbbbb;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover {
+  color: #ffffff;
+  padding-left: 8px;
+}
+.footer-col .social-links a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover {
+  color: #24262b;
+  background-color: #ffffff;
+}
+
+/*responsive*/
+@media (max-width: 767px) {
+  /* Lebar layar */
+  .footer-col {
+    width: 50%;
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 574px) {
+  .footer-col {
+    width: 100%;
+  }
+}
+

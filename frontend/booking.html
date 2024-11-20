@@ -1,0 +1,254 @@
+<html>
+ <head>
+  <title>Bali Resort Hotel</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="booking.css">
+  <script src="tanggal.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+  <script src="language.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+
+  
+
+ </head>
+ <body>
+  <div class="navbar">
+   <div class="left">
+    <a href="home.html">Bali Resort Hotel</a>
+    <a href="#" id="link-availability">Availability</a>
+    <a href="rewiew.html" id="link-about">About</a>
+    <a href="#" id="link-contact">Contact</a>
+    <a href="wishlist.html" id="link-policies">Policies</a>
+   </div>
+   <div class="language-switcher">
+    <button class="language-button" id="en-button" onclick="changeLanguage('en')">EN</button>
+    <button class="language-button" id="in-button" onclick="changeLanguage('id')">ID</button>
+  </div>
+  </div>
+  <div class="header-image"></div>
+  <div class="search-bar">
+    <!-- Checkin Date -->
+    <div class="input-group">
+      <label for="dates">Select dates</label>
+      <div class="input-box" id="dates">
+        <i class="fas fa-calendar-alt"></i>
+        <input type="date" id="checkin" name="checkin" required class="input-field">
+        <span>→</span>
+        <input type="date" id="checkout" name="checkout" required class="input-field">
+        <button onclick="filterRoomsByDate()">Show</button>
+
+      </div>
+    </div>
+    <script>
+      window.onload = function() {
+        // Get the checkin and checkout dates from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const checkin = urlParams.get('checkin');
+        const checkout = urlParams.get('checkout');
+      
+        if (checkin && checkout) {
+          // Populate the checkin and checkout fields with the selected dates
+          document.getElementById('checkin').value = checkin;
+          document.getElementById('checkout').value = checkout;
+          // Call the function to filter rooms by the selected dates
+          filterRoomsByDate();
+        }
+      };
+      
+      function filterRoomsByDate() {
+        const checkinInput = document.getElementById('checkin').value;
+        const checkoutInput = document.getElementById('checkout').value;
+        const rooms = document.querySelectorAll('.room-card');
+        
+        rooms.forEach(room => {
+          const availability = room.getAttribute('data-availability');
+          const dates = availability.split(',');
+      
+          if (dates.includes(checkinInput) && dates.includes(checkoutInput)) {
+            room.style.display = 'block';
+          } else {
+            room.style.display = 'none';
+          }
+        });
+      }
+      
+      document.getElementById('checkin').addEventListener('change', validateDates);
+      document.getElementById('checkout').addEventListener('change', validateDates);
+      
+      function validateDates() {
+        const checkinInput = document.getElementById('checkin');
+        const checkoutInput = document.getElementById('checkout');
+      
+        const checkinDate = new Date(checkinInput.value);
+        const checkoutDate = new Date(checkoutInput.value);
+      
+        if (checkinDate && checkoutDate && checkoutDate <= checkinDate) {
+          checkoutInput.value = '';
+          alert('Checkout date must be after the check-in date.');
+        }
+      }
+      </script>
+  
+   
+    
+  
+    <!-- Promo Code -->
+    <div class="input-group">
+      <label for="promo-code">Enter Promo Code</label>
+      <div class="input-box" id="promo-code">
+        <i class="fas fa-tag"></i>
+        <input type="text" id="promo-code-input" name="promo-code" placeholder="Enter promo code" class="input-field">
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="main-content">
+      <div class="room-card" data-availability="2024-09-2,2024-09-27,2024-09-28">
+        <div class="room-info">
+          <img alt="Ocean view room with a large bed and a beautiful view of the ocean" height="100" src="3.jpg" width="150"/>
+          <div class="room-details">
+            <h3 id="room-01-title">01. Luxury Room, Ocean View</h3>
+            <p ><i class="fas fa-bed"></i> Sleeps: 3 | <i class="fas fa-bed"></i> 1 King Bed | <i class="fas fa-bath"></i> 1 Bathroom</p>
+            <p id="room-01-amenities"><i class="fas fa-check"></i> Ocean view | <i class="fas fa-check"></i> Non-smoking | <i class="fas fa-check"></i> Television | <i class="fas fa-check"></i> Internet Access | <i class="fas fa-check"></i> Hairdryer | <i class="fas fa-check"></i> Air conditioned</p>
+            <p id="room-01-description">Experience stunning ocean views in this elegant room, featuring a king-size bed and modern amenities. Perfect for couples or small families, this room combines luxury and comfort.</p>
+            <a href="#">More info</a>
+          </div>
+        </div>
+        <div class="unavailable-dates">
+          <span>Thu, 26 Sept – Fri, 27 Sept are unavailable</span>
+          <a href="#">Find suitable dates</a>
+        </div>
+      </div>
+      
+      <div class="room-card" data-availability="2024-09-29,2024-09-30,2024-10-01">
+        <div class="room-info">
+          <img alt="Ocean view room with a large bed and a beautiful view of the ocean" height="100" src="2.jpg" width="150"/>
+          <div class="room-details">
+            <h3 id="luxury-room-title-2">02. Prestige Room</h3>
+            <p ><i class="fas fa-bed"></i> Sleeps: 3 | <i class="fas fa-bed"></i> 1 King Bed | <i class="fas fa-bath"></i> 1 Bathroom</p>
+            <p ><i class="fas fa-check"></i> Ocean view | <i class="fas fa-check"></i> Non-smoking | <i class="fas fa-check"></i> Television | <i class="fas fa-check"></i> Internet Access | <i class="fas fa-check"></i> Hairdryer | <i class="fas fa-check"></i> Air conditioned</p>
+            <p id="luxury-room-description-2">This room offers contemporary decor with breathtaking ocean views, ideal for guests who appreciate modern luxury and comfort.</p>
+            <a href="#">More info</a>
+          </div>
+        </div>
+        <div class="unavailable-dates">
+          <span>Thu, 29 Sept – Fri, 30 Sept are unavailable</span>
+          <a href="#">Find suitable dates</a>
+        </div>
+      </div>
+  
+      <div class="room-card" data-availability="2024-09-29,2024-09-30,2024-10-01">
+        <div class="room-info">
+          <img alt="Prestige suite with a large bed and luxurious amenities" height="100" src="8.jpg" width="150"/>
+          <div class="room-details">
+            <h3 id="prestige-suite-title">03. Beachfront Room</h3>
+            <p ><i class="fas fa-bed"></i> Sleeps: 4 | <i class="fas fa-bed"></i> 1 King Bed | <i class="fas fa-bath"></i> 2 Bathrooms</p>
+            <p ><i class="fas fa-check"></i> Sea view | <i class="fas fa-check"></i> Non-smoking | <i class="fas fa-check"></i> Private pool | <i class="fas fa-check"></i> Television | <i class="fas fa-check"></i> Internet Access | <i class="fas fa-check"></i> Air conditioned</p>
+            <p id="prestige-suite-description">This luxurious room features a spacious layout with stunning sea views and access to a private pool, providing the ultimate retreat for families or friends.</p>
+            <a href="#">More info</a>
+          </div>
+        </div>
+        <div class="unavailable-dates">
+          <span>Thu, 26 Sept – Fri, 27 Sept are unavailable</span>
+          <a href="#">Find suitable dates</a>
+        </div>
+      </div>
+  
+      <div class="room-card" data-availability="2024-09-29,2024-09-30,2024-10-01">
+        <div class="room-info">
+          <img alt="Luxury room with a large bed and ocean views" height="100" src="9.jpg" width="150"/>
+          <div class="room-details">
+            <h3 id="room-title-4">04. Family Room</h3>
+            <p ><i class="fas fa-bed"></i> Sleeps: 6 | <i class="fas fa-bed"></i> 2 King Beds | <i class="fas fa-bath"></i> 3 Bathrooms</p>
+            <p ><i class="fas fa-check"></i> Ocean view | <i class="fas fa-check"></i> Non-smoking | <i class="fas fa-check"></i> Private pool | <i class="fas fa-check"></i> Television | <i class="fas fa-check"></i> Internet Access | <i class="fas fa-check"></i> Air conditioned</p>
+            <p id="room-description-4">This spacious room boasts 2 luxurious bedrooms, a private pool, and direct access to the beach, making it a perfect choice for larger groups seeking comfort and relaxation.</p>
+            <a href="#">More info</a>
+          </div>
+        </div>
+        <div class="unavailable-dates">
+          <span>Thu, 26 Sept – Fri, 27 Sept are unavailable</span>
+          <a href="#">Find suitable dates</a>
+        </div>
+      </div>
+  
+      <div class="room-card" data-availability="2024-09-29,2024-09-30,2024-10-01" data-price="600">
+        <div class="room-info">
+          <img alt="Luxury room with a large bed and ocean views" height="100" src="10.jpg" width="150"/>
+          <div class="room-details">
+            <h3 id="room-title-5">05. Executive Room</h3>
+            <p><i class="fas fa-bed"></i> Sleeps: 6 | <i class="fas fa-bed"></i> 2 King Beds | <i class="fas fa-bath"></i> 2 Bathrooms</p>
+            <p><i class="fas fa-check"></i> Ocean view | <i class="fas fa-check"></i> Non-smoking | <i class="fas fa-check"></i> Television | <i class="fas fa-check"></i> Internet Access | <i class="fas fa-check"></i> Air conditioned</p>
+            <p id="room-description-5">This upscale room provides a luxurious experience with modern decor, 2 bedrooms, and ample space for relaxation and entertainment.</p>
+            <p>Price per night: $600</p>
+            <a href="#">More info</a>
+            <button onclick="selectRoom('05. Executive Room', 600)">Select Room</button>
+
+          </div>
+        </div>
+        <div class="unavailable-dates">
+          <span>Thu, 26 Sept – Fri, 27 Sept are unavailable</span>
+          <a href="#">Find suitable dates</a>
+        </div>
+      </div>
+  
+      <div class="room-card" data-availability="2024-09-29,2024-09-30,2024-10-01" data-price="400">
+        <div class="room-info">
+          <img alt="Luxury room with a large bed and ocean views" height="100" src="11.jpg" width="150"/>
+          <div class="room-details">
+            <h3 id=""room-title-6">06. Oceanfront Room</h3>
+            <p><i class="fas fa-bed"></i> Sleeps: 6 | <i class="fas fa-bed"></i> 2 King Beds | <i class="fas fa-bath"></i> 3 Bathrooms</p>
+            <p><i class="fas fa-check"></i> Ocean view | <i class="fas fa-check"></i> Non-smoking | <i class="fas fa-check"></i> Private pool | <i class="fas fa-check"></i> Television | <i class="fas fa-check"></i> Internet Access | <i class="fas fa-check"></i> Air conditioned</p>
+            <p id="room-description-6">This stunning oceanfront room offers breathtaking views, luxurious amenities, and ample space for a relaxing getaway.</p>
+            <p>Price per night: $400</p>
+            <a href="#">More info</a>
+            <button onclick="selectRoom('06. Oceanfront Room', 400)">Select Room</button>
+
+          </div>
+        </div>
+        <div class="unavailable-dates">
+          <span>Thu, 26 Sept – Fri, 27 Sept are unavailable</span>
+          <a href="#">Find suitable dates</a>
+        </div>
+      </div>
+  
+      <div class="room-card" data-availability="2024-09-29,2024-09-30,2024-10-03"data-price="500">
+        <div class="room-info">
+          <img alt="Luxury room with a large bed and ocean views" height="100" src="12.jpg" width="150"/>
+          <div class="room-details">
+            <h3 id="room-title-7">07. Royal Suite</h3>
+            <p><i class="fas fa-bed"></i> Sleeps: 6 | <i class="fas fa-bed"></i> 2 King Beds | <i class="fas fa-bath"></i> 3 Bathrooms</p>
+            <p><i class="fas fa-check"></i> Ocean view | <i class="fas fa-check"></i> Non-smoking | <i class="fas fa-check"></i> Private pool | <i class="fas fa-check"></i> Television | <i class="fas fa-check"></i> Internet Access | <i class="fas fa-check"></i> Air conditioned</p>
+            <p id="room-description-7">This luxurious suite features spacious living areas, stunning ocean views, and high-end amenities for an unforgettable stay.</p>
+            <p><strong>Price per night: $500</strong></p>
+            
+            <a href="#">More info</a>
+            <button onclick="selectRoom('07. Royal Suite', 500)">Pilih Kamar</button> <!-- Tombol Pilih Kamar -->
+
+          </div>
+        </div>
+        <div class="unavailable-dates">
+          <span>Thu, 26 Sept – Fri, 27 Sept are unavailable</span>
+          <a href="#">Find suitable dates</a>
+        </div>
+      </div>
+      <script src="tanggal.js"></script>
+        <script src="tanggalkamar.js"></script>
+
+
+    </div>
+    <div class="sidebar">
+      <div id="sidebar-info" style="margin-bottom: 20px;">
+        <h3 id="sidebar-dates">Select your dates</h3>
+        <p id="sidebar-duration">0 nights</p>
+        <p id="sidebar-summary">1 room | 1 guest</p>
+        <p id="sidebar-total-price">Total price: $0</p>
+      </div>
+      <button id="bookButton">Book</button>
+    </div>
+
+ </body>
+</html>

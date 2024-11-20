@@ -1,0 +1,255 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+/* Fixed navbar */
+.navbar {
+  background-color: #006d8d;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed; /* Stays at the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensures it's above other content */
+}
+
+body {
+  margin-top: 60px; /* Adjust to the height of the navbar */
+}
+
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navbar .right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .right a {
+  margin-left: 20px;
+}
+
+.header-image {
+  width: 100%;
+  height: 300px;
+  background-image: url('1.jpg');
+  background-size: cover;
+  background-position: center;
+  
+  
+}
+
+.search-bar {
+  background-color: white;
+  padding: 20px;
+  margin: -50px 20px 20px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar div {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar div i {
+  margin-right: 10px;
+}
+
+.search-bar input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.search-bar button {
+  background-color: #006d8d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #005a73;
+}
+
+
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: flex-start;
+
+}
+.main-content {
+  width: 75%;
+  margin-right: 20px;
+}
+.room-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align sidebar at the top of the first room */
+  margin-bottom: 20px;
+}
+.room-card {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 2; /* Berikan lebih banyak ruang ke card kamar */
+    margin-right: 40px; /* Jarak antara kamar dan sidebar */
+}
+.room-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.room-info {
+  display: flex;
+  margin-top: 10px;
+}
+.room-info img {
+  width: 350px;
+  height: 200px;
+  border-radius: 5px;
+  margin-right: 20px;
+
+}
+.room-details {
+  flex: 1;
+}
+.room-details h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.room-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+.room-details a {
+  color: #007bff;
+  text-decoration: none;
+}
+.room-details a:hover {
+  text-decoration: underline;
+
+}
+.room-card img, .room-info img {
+ 
+  transition: transform 0.3s ease-in-out; 
+  transform-origin: center; 
+}
+
+.room-card img:hover, .room-info img:hover {
+  transform: scale(0.9); 
+}
+
+
+
+
+
+.unavailable-dates {
+  background-color: #e9ecef;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.unavailable-dates span {
+  font-size: 14px;
+  color: #555;
+}
+.unavailable-dates a {
+  color: #007bff;
+  text-decoration: none;
+}
+.unavailable-dates a:hover {
+  text-decoration: underline;
+}
+@keyframes scaleProgress{
+  from{
+    transform: scaleX(0);
+  }
+  to{
+    transform: scale(1);
+  }
+}
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background-color: #007bff;
+  border-radius: 5px;
+  transform-origin: left; /* Transform dari kiri ke kanan */
+  animation: scaleProgress 2s ease-in-out forwards;
+}
+.sidebar h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+.sidebar p {
+  font-size: 14px;
+  color: #555;
+}
+.sidebar button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.sidebar button:hover {
+  background-color: #0056b3;
+}
+
+.sidebar {
+  width: 20%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: fit-content;
+  flex: 1; /* Lebar sidebar lebih kecil dari card kamar */
+  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: #f9f9f9;
+  position: sticky;
+  top: 50px;
+  /* tambahkan properti ini untuk membuat sidebar tetap di atas saat di-scroll */
+  padding: 20px;
+}
+
+
+
+
